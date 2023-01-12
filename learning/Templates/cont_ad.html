@@ -1,0 +1,137 @@
+{% load static %}
+
+<html lang="en">
+<head>
+   <style>
+      table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      }
+      th, td {
+      padding: 5px;
+      }
+   </style>
+    <meta charset="UTF-8">
+    <title>Chapter content update</title>
+   <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+</head>
+<body class= "pic" background="{% static 'trt.jpg' %}" >
+<h3 align="center">COURSE CHAPTER CONTENT</h3>
+<div style="color:blue;" align="center">
+        {% if messages %}
+            {% for msg in messages %}
+                    {{ msg }}
+            {% endfor %}
+        {% endif %}
+</div>
+<table  style="width:100%">
+   <tr>
+      <th>
+         Subject title
+      </th>
+      <th>
+         Course name
+      </th>
+      <th>
+         Course chapter name
+      </th>
+      <th>
+         Content name
+      </th>
+      <th>
+         Text content
+      </th>
+      <th>
+         Mandatory/Supplimentary?
+      </th>
+      <th>
+         Average time to complete (in seconds)
+      </th>
+      <th>
+         Paid/Free?
+      </th>
+        <th>
+         Content type
+      </th>
+      <th>
+         Teacher name
+      </th>
+      <th>
+         Teacher email
+      </th>
+   </tr>
+   {% for i in dm %}
+   <tr>
+      <td>
+         {{i.Subject_title}}
+      </td>
+      <td>
+         {{i.Course_title}}
+      </td>
+      <td>
+         {{i.Chapter_title}}
+      </td>
+      <td>
+         {{i.Chapter_Content_name}}
+      </td>
+      <td>
+         {{i.Chapter_text_content}}
+      </td>
+      {% if i.Chapter_Content_Is_mandatory == 1 %}
+      <td>
+         Mandatory
+      </td>
+      {% endif %}
+      {% if i.Chapter_Content_Is_mandatory == 0 %}
+      <td>
+         Supplimentary
+      </td>
+      {% endif %}
+      <td>
+         {{i.Chapter_Content_Time_required_in_sec}}
+      </td>
+      {% if i.Chapter_Content_Is_open_for_free == 1 %}
+      <td>
+         Paid
+      </td>
+      {% endif %}
+      {% if i.Chapter_Content_Is_open_for_free == 0 %}
+      <td>
+         Free
+      </td>
+      {% endif %}
+        <td>
+         {{i.Chapter_Content_type}}
+      </td>
+       {% for t in gt %}
+        {% if t == i.Sub_reg %}
+        <td>
+         {{t.First_name}} {{t.Last_name}}
+      </td>
+      {% endif %}
+        {% endfor %}
+
+
+       {% for t in gt %}
+        {% if t == i.Sub_reg %}
+        <td>
+         {{t.Email}}
+      </td>
+      {% endif %}
+        {% endfor %}
+      <td>
+         <button type="submit" onclick="location.href='{% url 'edit_content1' i.id %}'" name='t_h'>Edit</button>
+      </td>
+      <td>
+         <button type="submit" onclick="location.href='{% url 'delete_content1' i.id %}'" name='del'>Delete</button>
+      </td>
+   </tr>
+   {% endfor %}
+</table><br><br>
+<div align="center">
+   <button type="submit" onclick="location.href='{% url 'admin_home' %}'" name='mybtn2'>Back</button>
+</div>
+
+</body>
+</html>
+

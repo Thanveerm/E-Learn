@@ -1,0 +1,111 @@
+{% load static %}
+
+<html lang="en">
+<head>
+   <style>
+      table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      }
+      th, td {
+      padding: 15px;
+      }
+   </style>
+    <meta charset="UTF-8">
+    <title>Booked details</title>
+   <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+</head>
+<body class= "pic" background="{% static 'buk acc.jfif' %}" >
+<h3 align="center">STUDENT BOOKED DETAILS</h3>
+<div style="color:blue;" align="center">
+        {% if messages %}
+            {% for msg in messages %}
+                    {{ msg }}
+            {% endfor %}
+        {% endif %}
+</div>
+<table  style="width:100%">
+   <tr>
+      <th>
+         Student_name
+      </th>
+      <th>
+         Student_email
+      </th>
+      <th>
+         Subject_name
+      </th>
+      <th>
+         Course_name
+      </th>
+      <th>
+         Attendance
+      </th>
+      <th>
+         Pending_days
+      </th>
+      <th>
+         Enrollment_date
+      </th>
+        <th>
+         Paid?
+      </th>
+        <th>
+         Teacher_response
+      </th>
+   </tr>
+   {% for i in stzz %}
+   <tr>
+      <td>
+         {{i.Student_name}}
+      </td>
+      <td>
+         {{i.Student_email}}
+      </td>
+      <td>
+         {{i.Subject_name}}
+      </td>
+      <td>
+         {{i.Course_name}}
+      </td>
+      <td>
+         {{i.Attendance}}
+      </td>
+      <td>
+         {{i.Pending_days}}
+      </td>
+      <td>
+         {{i.Enrollment_date}}
+      </td>
+      {% if i.Is_paid_subscription == 0 %}
+        <td>
+         Free
+      </td>
+      {% endif %}
+      {% if i.Is_paid_subscription == 1 %}
+        <td>
+         Paid
+      </td>
+      {% endif %}
+        <td>
+         {{i.Teacher_response}}
+      </td>
+      <td>
+         <button type="submit" onclick="location.href='{% url 'stu_accept' i.id %}'" name='t_h'>Accept</button>
+      </td>
+      <td>
+         <button type="submit" onclick="location.href='{% url 'stu_reject' i.id %}'" name='del'>Reject</button>
+      </td>
+      <td>
+         <button type="submit" onclick="location.href='{% url 'stu_delete' i.id %}'" name='del'>Delete</button>
+      </td>
+   </tr>
+   {% endfor %}
+</table><br><br>
+<div align="center">
+   <button type="submit" onclick="location.href='{% url 'teacher_home' %}'" name='mybtn2'>Back</button>
+</div>
+
+</body>
+</html>
+

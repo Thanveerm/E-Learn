@@ -1,0 +1,62 @@
+{% load static %}
+
+<html lang="en">
+<head>
+   <style>
+      table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      }
+      th, td {
+      padding: 15px;
+      }
+   </style>
+    <meta charset="UTF-8">
+    <title>Requests</title>
+   <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+</head>
+<body class= "pic" background="{% static 'trt.jpg' %}" >
+<h3 align="center">PASSWORD CHANGE REQUESTS</h3>
+<div style="color:blue;" align="center">
+        {% if messages %}
+            {% for msg in messages %}
+                    {{ msg }}
+            {% endfor %}
+        {% endif %}
+</div>
+<table  style="width:100%">
+   <tr>
+      <th>
+         Name
+      </th>
+      <th>
+         Email
+      </th>
+      <th>
+         User category
+      </th>
+   </tr>
+   {% for i in dd %}
+   <tr>
+      <td>
+         {{i.Name}}
+      </td>
+      <td>
+         {{i.Email}}
+      </td>
+      <td>
+         {{i.User_category}}
+      </td>
+      <td>
+         <button type="submit" onclick="location.href='{% url 'pass_req1' i.id %}'" name='t_h'>Approve</button>
+      </td>
+   </tr>
+   {% endfor %}
+</table><br><br>
+<div align="center">
+   <button type="submit" onclick="location.href='{% url 'admin_home' %}'" name='mybtn2'>Back</button>
+</div>
+
+</body>
+</html>
+

@@ -1,0 +1,157 @@
+{% load static %}
+
+<html lang="en">
+<head>
+   <style>
+      table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      }
+      th, td {
+      padding: 15px;
+      }
+   </style>
+    <meta charset="UTF-8">
+    <title>Block member</title>
+   <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+</head>
+<body class= "pic" background="{% static 'trt.jpg' %}" >
+<h3 align="center">BLOCK MEMBER</h3>
+<div style="color:blue;" align="center">
+        {% if messages %}
+            {% for msg in messages %}
+                    {{ msg }}
+            {% endfor %}
+        {% endif %}
+</div>
+<h3 align="center">TEACHERS</h3>
+<table  style="width:100%">
+   <tr>
+      <th>
+         Name
+      </th>
+      <th>
+         Email
+      </th>
+      <th>
+         Registration date
+      </th>
+      <th>
+         Qualification
+      </th>
+      <th>
+         Image
+      </th>
+        <th>
+            Status
+        </th>
+   </tr>
+   {% for i in t_reg %}
+   <tr>
+      <td>
+         {{i.First_name}} {{i.Last_name}}
+      </td>
+      <td>
+         {{i.Email}}
+      </td>
+      <td>
+         {{i.Registration_date}}
+      </td>
+      <td>
+         {{i.Qualification}}
+      </td>
+      <td>
+         <img src="/media/{{i.Image}}" alt="No image" height="200px" width="200px">
+      </td>
+        <td>
+                {% if i.User_role != 'teacher_blocked' %}
+                    Allowed
+                {% endif %}
+                {% if i.User_role == 'teacher_blocked' %}
+                    Blocked
+                {% endif %}
+      </td>
+      <td>
+         <button type="submit" onclick="location.href='{% url 'blocks' i.id %}'" name='blo'>Block</button>
+      </td>
+      <td>
+         <button type="submit" onclick="location.href='{% url 'allows' i.id %}'" name='all'>Allow</button>
+      </td>
+   </tr>
+   {% endfor %}
+</table><br><br>
+
+<h3 align="center">STUDENTS</h3>
+<table  style="width:100%">
+   <tr>
+      <th>
+         Name
+      </th>
+      <th>
+         Email
+      </th>
+      <th>
+         Registration date
+      </th>
+      <th>
+         Number of courses enrolled
+      </th>
+      <th>
+         Number of courses completed
+      </th>
+      <th>
+         Image
+      </th>
+       <th>
+            Status
+        </th>
+   </tr>
+   {% for i in s_reg %}
+   <tr>
+      <td>
+         {{i.First_name}} {{i.Last_name}}
+      </td>
+      <td>
+         {{i.Email}}
+      </td>
+      <td>
+         {{i.Registration_date}}
+      </td>
+      <td>
+         {{i.Num_of_courses_enrolled}}
+      </td>
+      <td>
+         {{i.Num_of_courses_completed}}
+      </td>
+      <td>
+         <img src="/media/{{i.Image}}" alt="No image" height="200px" width="200px">
+      </td>
+         <td>
+            {% if i.User_role != 'student_blocked' %}
+                    Allowed
+             {% endif %}
+             {% if i.User_role == 'student_blocked' %}
+                    Blocked
+             {% endif %}
+      </td>
+      <td>
+         <button type="submit" onclick="location.href='{% url 'blocks1' i.id %}'" name='blo'>Block</button>
+      </td>
+      <td>
+         <button type="submit" onclick="location.href='{% url 'allows1' i.id %}'" name='all'>Allow</button>
+      </td>
+   </tr>
+   {% endfor %}
+</table><br><br>
+<div align="center">
+   <button type="submit" onclick="location.href='{% url 'admin_home' %}'" name='mybtn2'>Back</button>
+</div>
+
+</body>
+</html>
+
+
+
+
+
+

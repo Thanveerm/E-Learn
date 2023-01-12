@@ -1,0 +1,49 @@
+{% load static %}
+<html lang="en">
+<head>
+    <style>
+.tdStyle
+{
+background-repeat:no-repeat;
+background-size:cover;
+}
+label
+{ float: center; width: 10em; margin-right: 1em; }
+</style>
+    <meta charset="UTF-8">
+    <title>Upload certificate</title>
+    <!--<link rel="stylesheet" type="text/css" href={% static 'trt.css' %}>-->
+</head>
+<!--style="background-repeat: no-repeat; background-size: 1300px 700px"-->
+<body class="tdStyle"  background="{% static 'trt.jpg' %}">
+<form method="post" action="{% url 'upl_cer' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="container" align="center">
+        <h1>Upload certificate</h1>
+
+                <label><b>Name</b></label><br><br>
+                <select name="stu_id" required>
+                    <option value="Nil" selected>Select student</option>
+                    {% for a,b,c,d,e,f in ms %}
+                        <option value="{{c}};{{d}};{{e}};{{f}}">Name - {{a}} {{b}}, Email - {{c}}, Subject - {{d}}, Course - {{e}}, Teacher - {{f}}</option>
+                    {% endfor %}
+                </select><br><br>
+                <label><b>Upload certificate</b></label><br><br>
+                <input type="file" size="10" name="cert" required><br><br>
+            <button type="submit" class="registerbtn">Submit</button>
+            <button type="reset" class="registerbtn">Cancel</button>
+    </div>
+</form>
+<div align="center" style="color:blue;">
+        {% if messages %}
+            {% for msg in messages %}
+                    {{ msg }}
+            {% endfor %}
+        {% endif %}
+</div>
+<div align="center">
+    <button type="submit" onclick="location.href='{% url 'admin_home' %}'" name='mybtn2'>Back</button>
+</div>
+</body>
+</html>
+

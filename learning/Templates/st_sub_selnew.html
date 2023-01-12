@@ -1,0 +1,66 @@
+{% load static %}
+<html lang="en">
+<head>
+    <style>
+    tbody th
+    {
+        font-size:15px;
+        }
+     tbody td
+    {
+        font-size:15px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title>Book</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'table1.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+
+</head>
+<body class= "pic" background="{% static 'trt.jpg' %}">
+<h1 style="color:brown;text-align:center;font-size:50px">Available Teacher Details</h1>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Qualification</th>
+        <th>Brief introduction</th>
+        <th>Photo</th>
+      <th>Rating score</th>
+      <th>Course brief</th>
+      <th>Course duration</th>
+      <th>Number of chapters</th>
+      <th>Course fee in Rs</th>
+      <th>Teaching Language</th>
+
+    </tr>
+    {% for a,b,c,d,e,f,g,h,i,j,k,l,m in ds %}
+    <tr>
+                <td>{{a}} {{b}}</td>
+            <td>{{c}}</td>
+            <td>{{d}}</td>
+                <td>{{e}}</td>
+            <td><img src="/media/{{f}}" alt="No image" height="200px" width="200px"></td>
+            <td>{{g}}</td>
+            <td>{{i}}</td>
+            <td>{{j}}</td>
+            <td>{{k}}</td>
+            <td>{{l}}</td>
+            <td>{{m}}</td>
+            <td><button type="submit" onclick="location.href='{% url 'stu_buk_teacherr' h %}'">Book course</button></td>
+    </tr>
+   {% endfor %}
+</table><br>
+<div align="center">
+    <button type="submit" onclick="location.href='{% url 'student_home' %}'">Home</button>
+</div>
+<div style="color:blue;" align="center">
+        {% if messages %}
+            {% for msg in messages %}
+                    {{ msg }}
+            {% endfor %}
+        {% endif %}
+</div>
+</body>
+</html>
+

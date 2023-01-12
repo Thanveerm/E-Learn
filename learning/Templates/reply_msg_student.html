@@ -1,0 +1,27 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Send message</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+
+</head>
+<script src="{% static 'jquery.min.js' %}"></script>
+<body class= "pic" background="{% static 'trt.jpg' %}" >
+    <div  class="cen" align="center">
+        <form method="post" action="{% url 'reply_msg_student' pa.id %}">
+            {% csrf_token %}
+            <br><br>
+            <input type="hidden" name="cate" value="{{pa.Category}}">
+            <input type="hidden" name="f_email" value="{{pa.From_email}}"><br><br>
+            <input type="hidden" name="to_email" value="{{pa.To_email}}"><br><br>
+            <input type="text" name="msg_cont" value="{{pa.Message_content}}"><br><br>
+            <input type="submit" name="sb" value="Send">
+            <input type="reset" name="sb1" value="Cancel">
+        </form>
+        <div>
+             <button type="submit" onclick="location.href='{% url 'student_home' %}'">Home</button>
+        </div>
+    </div>
+</body>
+</html>

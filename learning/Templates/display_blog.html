@@ -1,0 +1,42 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HOME</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'home.css' %}">
+
+</head>
+<body class= "pic" background="{% static 'home_learn1.jpeg' %}">
+
+<center>
+<div class="head">
+    <h1>BLOGS</h1><br><br>
+    <!--<h4>One Step Ahead This Season</h4>-->
+</div>
+    <div>
+
+    </div>
+<div style="color:blue;">
+        {% if messages %}
+            {% for msg in messages %}
+                    {{ msg }}
+            {% endfor %}
+        {% endif %}
+</div>
+</center>
+<div align="center">
+    {% for i in dc %}
+    <img src="/media/{{i.Image}}" width="300" height="300" alt="{{i.Name}}"><br><br>
+    <label style="text-shadow: 2px 2px; color:blue; font-size:50px">{{i.Name}}</label><br><br>
+    <label style="text-shadow: 0 0 3px #FF0000; color:green; font-size:50px" >{{i.Date_blog}}</label><br><br>
+    <label style="text-shadow: 2px 2px 5px red; font-size:30px">'{{i.Blog_content}}'</label><br><br><br>
+    {% endfor %}
+</div>
+    <br><br>
+<div align="center">
+    <button type="submit" onclick="location.href='{% url 'home' %}'" name='mybtn2'>BACK</button>
+</div>
+</body>
+
+</html>
+

@@ -1,0 +1,36 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Paid</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+
+</head>
+
+<body class= "pic" background="{% static 'trt.jpg' %}">
+<center>
+<form method="post" action="{% url 'stu_buk_teacher' %}">
+    {% csrf_token %}
+    <div class="container">
+    <h1>Pay amount</h1>
+    <div style="color:blue;" align="center">
+        {% if messages %}
+            {% for msg in messages %}
+                    {{ msg }}
+            {% endfor %}
+        {% endif %}
+</div>
+    <input type="text" placeholder="Enter paid fees in Rs" name="paid" required><br>
+    <button type="submit" class="registerbtn">Next</button><br>
+    <button type="reset" class="registerbtn">Cancel</button>
+  </div>
+
+</form>
+</center>
+<div align="center">
+    <button type="submit" onclick="location.href='{% url 'student_home' %}'">Home</button>
+</div>
+</body>
+
+</html>
+

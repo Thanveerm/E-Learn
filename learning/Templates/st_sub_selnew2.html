@@ -1,0 +1,36 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Select course</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+</head>
+<body class= "pic" background="{% static 'trt.jpg' %}">
+<div align="center">
+<form method="post" action="{% url 'disp_teach' %}">
+    {% csrf_token %}
+    <h3>SELECT COURSE</h3>
+    <table>
+        <tr>
+            <td>
+                <select name="cou">
+                    <option value="Nil" selected>Select course</option>
+                    {% for i in snew1 %}
+                        <option value="{{i}}">{{i}}</option>
+                    {% endfor %}
+                </select>
+            </td>
+        </tr>
+    </table><br><br>
+    <div align="center">
+        <input type="submit" name="submit" value="submit">&nbsp&nbsp&nbsp&nbsp
+        <input type="reset" name="cancel" value="cancel">&nbsp&nbsp&nbsp&nbsp
+    </div>
+</form>
+</div>
+<div align="center">
+<button type="submit" onclick="location.href='{% url 'student_home' %}'" name='mybtn2'>Back</button>
+</div>
+</body>
+</html>
+

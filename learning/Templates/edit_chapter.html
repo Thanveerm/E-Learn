@@ -1,0 +1,27 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chapter edit</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+</head>
+<body class= "pic" background="{% static 'trt.jpg' %}">
+<div align="center">
+<form method="post" action="{% url 'edit_chapter' gh.Subject_title gh.Course_title gh.Chapter_title gh.id %}">
+    {% csrf_token %}
+    <h3><b>CHAPTER EDIT</b></h3><br><br>
+    <input type="hidden" value="{{gh.Subject_title}}" name="sub">
+    <input type="hidden" value="{{gh.Course_title}}" name="cou">
+    <label>Chapter title</label><br><br>
+    <input type="text" value="{{gh.Chapter_title}}" name="c_tt"><br><br>
+    <label>Number of assignments included</label><br><br>
+    <input type="number" value="{{gh.Num_of_assignments}}" name="n_s"><br><br>
+    <input type="submit" value="Submit">&nbsp&nbsp&nbsp&nbsp
+    <input type="reset" value="Cancel">
+</form>
+</div>
+<div align="center">
+   <button type="submit" onclick="location.href='{% url 'chapter_tr' %}'" name='mybtn2'>Back</button>
+</div>
+</body>
+</html>

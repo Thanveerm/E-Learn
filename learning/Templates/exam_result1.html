@@ -1,0 +1,91 @@
+{% load static %}
+
+<html lang="en">
+<head>
+   <style>
+      table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      }
+      th, td {
+      padding: 15px;
+      }
+   </style>
+    <meta charset="UTF-8">
+    <title>Exam results</title>
+   <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+</head>
+<body class= "pic" background="{% static 'trt.jpg' %}" >
+<h3 align="center">EXAM RESULTS</h3>
+<div style="color:blue;" align="center">
+        {% if messages %}
+            {% for msg in messages %}
+                    {{ msg }}
+            {% endfor %}
+        {% endif %}
+</div>
+<table  style="width:100%">
+   <tr>
+      <th>
+         Student name
+      </th>
+        <th>
+         Student email
+      </th>
+      <th>
+         Teacher name
+      </th>
+      <th>
+         Subject name
+      </th>
+      <th>
+         Total marks
+      </th>
+      <th>
+         Acquired marks
+      </th>
+      <th>
+         Grade
+      </th>
+      <th>
+         Exam finished time
+      </th>
+   </tr>
+   {% for i in gt %}
+   {% if i.Exam_res_reg == hh %}
+   <tr>
+      <td>
+         {{i.Student_name}}
+      </td>
+      <td>
+            {{i.Student_email}}
+      </td>
+      <td>
+            {{i.Teacher_name}}
+      </td>
+      <td>
+            {{i.Subject_name}}
+      </td>
+      <td>
+            {{i.Total_marks}}
+      </td>
+      <td>
+            {{i.Acquired_marks}}
+      </td>
+      <td>
+            {{i.Grade}}
+      </td>
+        <td>
+            {{i.Time_stop}}
+      </td>
+   </tr>
+   {% endif %}
+   {% endfor %}
+</table><br><br>
+<div align="center">
+   <button type="submit" onclick="location.href='{% url 'student_home' %}'" name='mybtn2'>Back</button>
+</div>
+
+</body>
+</html>
+

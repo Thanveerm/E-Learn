@@ -1,0 +1,72 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        label
+{ float: center; width: 10em; margin-right: 1em; }
+.th{
+background-repeat:no-repeat;
+background-attachment:fixed;
+background-size:cover;
+}
+
+    </style>
+    <title> admin home</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'home.css' %}">
+</head>
+<body class="th" background="{% static 'admin_home.jfif' %}">
+
+
+
+<div class="navbar">
+  <a href="{% url 'update_admin' %}">Update Profile</a>
+  <a href="{% url 'blog_admin' %}">Blogs</a>
+
+
+   <div class="dropdown">
+    <button class="dropbtn">Certificate
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="{% url 'upload_cert'%}">upload</a>
+      <a href="{% url 'del_cer'%}">Delete</a>
+    </div>
+  </div>
+   <a href="{% url 'about_content' %}">About website</a>
+   <a href="{% url 'block' %}">Block member</a>
+   <a href="{% url 'feedbak' %}">Feedback</a>
+
+    <div class="dropdown">
+    <button class="dropbtn">Message
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="{% url 'message' %}">Member</a>
+      <a href="{% url 'guest_message' %}">Guest</a>
+    </div>
+  </div>
+
+
+   <div class="dropdown">
+    <button class="dropbtn">Topics
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="{% url 'sub_ad' %}">Subject</a>
+      <a href="{% url 'chap_ad' %}">Chapters</a>
+      <a href="{% url 'ch_co_ad' %}">Chapter Content</a>
+    </div>
+  </div>
+    <a href="{% url 'pass_req'%}">Change Password</a>
+    <a href="{% url 'logout' %}">logout</a>
+</div>
+<h1 style="color:green" align="center">ADMIN HOME</h1>
+<div style="color:blue;" align="center">
+      {% if messages %}
+          {% for msg in messages %}
+                  {{ msg }}
+          {% endfor %}
+      {% endif %}
+</div>
+</body>

@@ -1,0 +1,38 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+</head>
+<body class= "pic" background="{% static 'trt.jpg' %}">
+<div align="center">
+<form action="{% url 'bnb' %}" method="post">
+{% csrf_token %}
+     <div style="color:blue;" align="center">
+            {% if messages %}
+                {% for msg in messages %}
+                        {{ msg }}
+                {% endfor %}
+            {% endif %}
+            </div>
+    <label>First name</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    <input type="text" value="{{bb1.First_name}}" name="first"><br>
+    <label>Last name</label> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    <input type="text" value="{{bb1.Last_name}}" name="last"><br>
+    <label>Username</label> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    <input type="text" value="{{um.username}}" name="user_name"><br>
+    <label>Email</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    <input type="text" value="{{bb1.Email}}" name="em"><br>
+    <label>Password</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    <input type="text" value="{{bb1.Password}}" name="psw"><br>
+    <input type="submit" value="submit">&nbsp&nbsp&nbsp&nbsp
+    <input type="reset" value="cancel">
+</form>
+</div><br>
+<div align="center">
+    <button type="submit" onclick="location.href='{% url 'update_admin' %}'">Back</button>
+</div>
+</body>
+</html>
+

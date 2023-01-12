@@ -1,0 +1,33 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Subject edit</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+</head>
+<body class= "pic" background="{% static 'trt.jpg' %}">
+<div align="center">
+<form method="post" action="{% url 'edit_subject1' gh.Subject_title  gh.Course_title ftf.Email gh.id %}">
+    {% csrf_token %}
+    <h3><b>SUBJECT EDIT</b></h3>
+                <label>Subject title</label><br><br>
+                <input type="text" value="{{gh.Subject_title}}" name="sub"><br><br>
+                <label>Course title</label><br><br>
+                <input type="text" value="{{gh.Course_title}}" name="cou"><br><br>
+                <label>Course brief</label><br><br>
+                <textarea rows="4" cols="50" name="c_b">{{gh.Course_brief}}</textarea><br><br>
+                <label>Course duration</label><br><br>
+                <input type="number" value="{{gh.Course_duration}}" name="c_d"><br><br>
+                <label>Number of chapters</label><br><br>
+                <input type="number" value="{{gh.Num_of_chapters}}" name="n_c"><br><br>
+                <label>Course fee</label><br><br>
+                <input type="text" value="{{gh.Course_fee}}" name="c_f"><br><br>
+                <label>Language</label><br><br>
+                <input type="text" value="{{gh.Language}}" name="lan"><br><br>
+                <input type="submit" value="Submit">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <input type="reset" value="Cancel">
+</form>
+</div>
+</body>
+</html>
+

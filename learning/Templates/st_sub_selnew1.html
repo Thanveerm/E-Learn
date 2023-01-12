@@ -1,0 +1,36 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Select subject</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+</head>
+<body class= "pic" background="{% static 'trt.jpg' %}">
+<div align="center">
+<form method="post" action="{% url 'st_sub_selnew2' %}">
+    {% csrf_token %}
+    <h3>SELECT SUBJECT</h3>
+    <table>
+        <tr>
+            <td>
+                <select name="subj">
+                    <option value="Nil" selected>Select subject</option>
+                    {% for i in snew %}
+                        <option value="{{i}}">{{i}}</option>
+                    {% endfor %}
+                </select>
+            </td>
+        </tr>
+    </table><br><br>
+    <div align="center">
+        <input type="submit" name="submit" value="Submit">&nbsp&nbsp&nbsp&nbsp
+        <input type="reset" name="cancel" value="Cancel">&nbsp&nbsp&nbsp&nbsp
+    </div>
+</form>
+</div>
+<div align="center">
+<button type="submit" onclick="location.href='{% url 'student_home' %}'" name='mybtn2'>Back</button>
+</div>
+</body>
+</html>
+

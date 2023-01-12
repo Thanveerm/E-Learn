@@ -1,0 +1,84 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exam</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+
+</head>
+
+<body class= "pic" background="{% static 'trt.jpg' %}">
+<script>
+// Set the date we're counting down to
+var countDownDate = new Date("{{nbnn1}}").getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get today's date and time
+  var now = new Date().getTime();
+
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  // Output the result in an element with id="demo"
+  document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+  + minutes + "m " + seconds + "s ";
+
+  // If the count down is over, write some text
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("demo").innerHTML = "EXPIRED";
+  }
+}, 1000);
+
+var auto_refresh = setInterval(function() { submitform(); }, {{mrtt}});
+
+function submitform(){
+ // Calling validate function.
+{
+document.getElementById("form").submit();
+}
+}
+</script>
+
+<div align="center">
+<form method="post" action="{% url 'save_exam' %}" id="form">
+    {% csrf_token %}
+    <div class="container">
+    <h1>EXAM</h1>
+    <p>Your time ends at {{gg}}</p><br><br>
+    <p id="demo"></p>
+    <input type="hidden" name="end_time" value="{{gg}}">
+    <p>Select only one answer</p><br><br>
+     {% for i in nb %}
+        <label>Question: </label>
+     <label><b>{{i.Question}}</b></label><br><br>
+        <label>Options</label><br><br>
+     <label for="exx1">{{i.Option1}}</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+     <input type="checkbox" id="exx1" name="exx" value="{{i.Option1}}"><br><br>
+     <input type="hidden" name="exx3" value="{{i.Correct_answer}}">
+     <label for="exx2">{{i.Option2}}</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+     <input type="checkbox" id="exx2" name="exx" value="{{i.Option2}}"><br><br>
+     <label for="exx3">{{i.Option3}}</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+     <input type="checkbox" id="exx3" name="exx" value="{{i.Option3}}"><br><br>
+        {% endfor %}
+    <button type="submit" class="registerbtn">Finish</button>&nbsp&nbsp&nbsp&nbsp
+
+    <button type="reset" class="registerbtn">Reset</button>
+
+  </div>
+</form>
+</div>
+<div align="center">
+   <button type="submit" class="registerbtn" onclick="location.href='{% url 'student_home' %}'" name='mybtn2'>Back</button>
+</div>
+</body>
+</html>
+

@@ -1,0 +1,31 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Send message</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+
+</head>
+<script src="{% static 'jquery.min.js' %}"></script>
+<body class= "pic" background="{% static 'trt.jpg' %}" >
+    <div  class="cen" align="center">
+        <form method="post" action="{% url 'sent_msg_student' %}">
+            {% csrf_token %}
+            <br><br>
+             <select name="to_em">
+                    <option value="Nil" selected>To email</option>
+                    {% for i in kk %}
+                        <option value="{{i.Email}} {{i.User_role}}">{{i.Email}}, Category - {{i.User_role}}</option>
+                    {% endfor %}
+             </select><br><br>
+            <textarea cols="50" rows="4" name="msg_cont"></textarea><br><br>
+            <input type="submit" name="sb" value="Send">
+            <input type="reset" name="sb1" value="Cancel">
+        </form>
+        <div>
+             <button type="submit" onclick="location.href='{% url 'student_home' %}'">Home</button>
+        </div>
+    </div>
+</body>
+</html>
+

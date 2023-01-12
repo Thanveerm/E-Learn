@@ -1,0 +1,59 @@
+{% load static %}
+<html>
+<head>
+     <style>
+        table tbody tr td {
+                    font-size: 24px;
+                    }
+         table th
+         {
+         font-size: 24px;
+         }
+    </style>
+    <meta charset="UTF-8">
+    <title>Messages</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'table1.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+
+</head>
+<body class= "pic" background="{% static 'trt.jpg' %}">
+    <h1 style="color:brown;text-align:center;font-size:50px">Messages</h1>
+    <div align="center">
+        <table style="white-space: nowrap;">
+            <tr>
+                <th>Sender category</th>
+                <th>Sender email</th>
+                <th>Message</th>
+            </tr>
+        {% for dd in bb %}
+            <tr>
+                <td>{{dd.Category}}</td>
+                <td>{{dd.From_email}}</td>
+                <td>{{dd.Message_content}}</td>
+                <td>
+                    <button onclick="window.location.href = '{% url 'del_msg_student' dd.id %}';">Delete</button>
+                </td>
+                <td>
+                    <button onclick="window.location.href = '{% url 'reply_msg_student' dd.id %}';">Reply</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </table><br><br>
+        <button onclick="window.location.href = '{% url 'sent_msg_student' %}';">Send message</button><br><br>
+        <button onclick="window.location.href = '{% url 'student_home' %}';">Back</button>
+        </div><br><br>
+
+
+<div align="center">
+    <div style="color:blue;">
+        {% if messages %}
+            {% for msg in messages %}
+                    {{ msg }}
+            {% endfor %}
+        {% endif %}
+</div>
+</div>
+</body>
+</html>
+
+

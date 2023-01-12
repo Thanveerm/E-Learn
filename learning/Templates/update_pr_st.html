@@ -1,0 +1,41 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>teacher</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+
+</head>
+<style>
+.pic
+{
+background-repeat:no-repeat;
+background-size:cover;
+}
+</style>
+
+<body class= "pic" background="{% static 'update st.jfif' %}">
+    <div align="center">
+    <div style="display: block; width: 600px;">
+    <form method="post" action="{% url 'update_pr_st' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+<br><br>
+    FIRSTNAME: <br><br><input type="text" value="{{bb.First_name}}" name="first_name"><br><br>
+    LASTNAME: <br><br><input type="text" value="{{bb.Last_name}}" name="last_name"><br><br>
+    USERNAME: <br><br><input type="text" value="{{um.username}}" name="user_name"><br><br>
+    EMAIL    :<br><br><input type="email" value="{{bb.Email}}" name="email"><br><br>
+    <input type="hidden" value="{{bb.Password}}" name="psw">
+    QUALIFICATION: <br><br><input type="text" value="{{bb.Qualification}}" name="qual" style="width:200px"><br><br>
+    SELF INTRODUCTION: <br><br><textarea rows="7" cols="50" name="intro">{{bb.Introduction_brief}}</textarea><br><br>
+    NUMBER OF ENROLLED STUDENTS: <br><br><input type="text" value="{{bb.Num_of_enrolled_students}}" name="enrol"><br><br>
+    IMAGE: <br><br><img src="/media/{{bb.Image}}" alt="No image" height="200px" width="200px"><br><br>
+    <br><br><input type="file" value="Upload new image" name="imgg1"><br><br>
+        <input type="hidden" value="{{bb.Image}}" name="imgg2">
+    <button type="submit">UPDATE</button><br><br>
+    </form>
+        <button type="submit" onclick="location.href='{% url 'student_home' %}'" name='mybtn2'>BACK</button>
+</div>
+</div>
+</body>
+</html>
+

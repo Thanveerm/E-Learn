@@ -1,0 +1,62 @@
+{% load static %}
+
+<html lang="en">
+<head>
+   <style>
+      table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      }
+      th, td {
+      padding: 15px;
+      }
+   </style>
+    <meta charset="UTF-8">
+    <title>Guest messages</title>
+   <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+</head>
+<body class= "pic" background="{% static 'trt.jpg' %}" >
+<h3 align="center">GUEST MESSAGES</h3>
+<div style="color:blue;" align="center">
+        {% if messages %}
+            {% for msg in messages %}
+                    {{ msg }}
+            {% endfor %}
+        {% endif %}
+</div>
+<table  style="width:100%">
+   <tr>
+      <th>
+         Name
+      </th>
+      <th>
+         Email
+      </th>
+      <th>
+         Message
+      </th>
+   </tr>
+   {% for i in bb %}
+   <tr>
+      <td>
+         {{i.Name}}
+      </td>
+      <td>
+            {{i.From_email}}
+      </td>
+      <td>
+         {{i.Message_content}}
+      </td>
+      <td>
+         <button type="submit" onclick="location.href='{% url 'delete_g_msg' i.id %}'" name='del'>Delete</button>
+      </td>
+   </tr>
+   {% endfor %}
+</table><br><br>
+<div align="center">
+   <button type="submit" onclick="location.href='{% url 'admin_home' %}'" name='mybtn2'>Back</button>
+</div>
+
+</body>
+</html>
+

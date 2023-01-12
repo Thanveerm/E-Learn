@@ -1,0 +1,23 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+
+</head>
+
+<body class= "pic" background="{% static 'trt.jpg' %}">
+    <div align="center">
+    <div style="display: block; width: 600px;">
+    <form method="post" action="{% url 'abb' %}">
+        {% csrf_token %}
+<br><br>
+    ENTER CONTENT: <br><br><textarea rows="20" cols="100" name="abbt">{{amm.About_website}}</textarea><br><br>
+        <input type="hidden" name="idd" value="{{amm.id}}">
+    <button type="submit">Add</button><br><br>
+    </form>
+        <button type="submit" onclick="location.href='{% url 'admin_home' %}'" name='mybtn2'>Back</button>
+</div>
+</div>
+</body>

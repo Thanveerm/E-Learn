@@ -1,0 +1,86 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'home.css' %}">
+<style>
+        .notification {
+  background-color: #333;
+  color: white;
+  text-decoration: none;
+  padding: 15px 26px;
+  position: relative;
+  display: inline-block;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-size: 16px;
+}
+
+.notification:hover {
+  background: green;
+}
+
+.notification .badge {
+  position: absolute;
+  top: -00px;
+ right: -00px;
+  padding: 3px 8px;
+  border-radius: 50%;
+  background: red;
+  color: white;
+}
+</style>
+</head>
+<body background="{% static 'home_learn.jpg' %}">
+<div class="navbar">
+  <a href="{% url 'home' %}">Home</a>
+  <a href="{% url 'news' %}">News</a>
+  <a href="{%url 'about'%}">About</a>
+  <div class="dropdown">
+    <button class="dropbtn">Blogs
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="{% url 'add_blog' %}">Add</a>
+      <a href="{% url 'display_blog' %}">View</a>
+    </div>
+  </div>
+  <a href="{% url 'contact' %}">Contact </a>
+  <div class="dropdown">
+  <button  class="notification"><span>Courses<i class="fa fa-caret-down"></i></span><span class="badge">{% if count > 0 %}{{count}}{% else %}0{% endif %}</span></button>
+      <div class="dropdown-content">
+          {% for i in sd %}
+            <a href="{% url 'reg_msg' %}">{{i}}</a>
+          {% endfor %}
+      </div>
+  </div>
+  <a href="{% url 'login' %}">Login</a>
+  <div class="dropdown">
+    <button class="dropbtn">Register
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="{% url 'student_reg' %}">Student</a>
+      <a href="{% url 'teacher_rg' %}">Teacher</a>
+      <a href="{% url 'admin_rg' %}">Admin</a>
+    </div>
+  </div>
+
+</div>
+
+<div align="center">
+    <h1 style="color:white">E learning web portal</h1>
+</div>
+
+<div style="color:yellow;" align="center">
+      {% if messages %}
+          {% for msg in messages %}
+                  {{ msg }}
+          {% endfor %}
+      {% endif %}
+</div>
+
+</body>
+</html>

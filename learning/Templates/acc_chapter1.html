@@ -1,0 +1,30 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Select chapter</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+
+</head>
+<script src="{% static 'jquery.min.js' %}"></script>
+<body class= "pic" background="{% static 'trt.jpg' %}" >
+    <div  class="cen" align="center">
+        <form method="post" action="{% url 'acc_chapter1' %}">
+            {% csrf_token %}
+            <br><br>
+             <select name="cha">
+                    <option value="Nil" selected>Select chapter</option>
+                    {% for i in fd %}
+                        <option value="{{i}}">{{i}}</option>
+                    {% endfor %}
+             </select><br><br>
+            <input type="submit" name="sb" value="Next">
+            <input type="reset" name="sb1" value="Cancel">
+        </form>
+        <div>
+             <button type="submit" onclick="location.href='{% url 'student_home' %}'">Home</button>
+        </div>
+    </div>
+</body>
+</html>
+

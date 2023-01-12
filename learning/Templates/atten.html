@@ -1,0 +1,36 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Attendance</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+
+</head>
+<body class= "pic" background="{% static 'trt.jpg' %}">
+<center>
+<form method="post" action="{% url 'atten' %}">
+    {% csrf_token %}
+    <div class="container">
+    <h1>ATTENDANCE</h1>
+     <select name="atn">
+         <option value="Nil" selected>Select student</option>
+         {% for i in ss %}
+            <option value="{{i.id}}">Name - {{i.Student_name}}, Subject - {{i.Subject_name}}, Course - {{i.Course_name}}, Current attendance - {{i.Attendance}}, Enrollment date - {{i.Enrollment_date}}</option>
+         {% endfor %}
+     </select><br><br>
+     <label><b>Give attendance</b></label><br><br>
+    <input type="number" placeholder="Give in number of days" name="atn1" required><br><br>
+
+    <button type="submit" class="registerbtn">Submit</button><br>
+    <button type="reset" class="registerbtn">Cancel</button>
+  </div>
+
+</form>
+<div align="center">
+    <button type="submit" onclick="location.href='{% url 'teacher_home' %}'" name='mybtn2'>Back</button>
+</div>
+</center>
+</body>
+
+</html>
+

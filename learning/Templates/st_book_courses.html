@@ -1,0 +1,72 @@
+{% load static %}
+
+<html lang="en">
+<head>
+   <style>
+      table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      }
+      th, td {
+      padding: 15px;
+      }
+   </style>
+    <meta charset="UTF-8">
+    <title>Enrolled subjects</title>
+   <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+</head>
+<body class= "pic" background="{% static 'trt.jpg' %}" >
+
+<h3 align="center">BOOKED COURSES</h3>
+<div style="color:blue;" align="center">
+        {% if messages %}
+            {% for msg in messages %}
+                    {{ msg }}
+            {% endfor %}
+        {% endif %}
+</div>
+<table>
+  <tr>
+    <th>Subject name</th>
+    <th>Course name</th>
+    <th>Teacher name</th>
+    <th>Teacher email </th>
+    <th>Attendance</th>
+    <th>Pending days</th>
+    <th>Enrollment date</th>
+    <th>Teacher response</th>
+    <th>Is paid subscription?</th>
+    <th>Paid amount</th>
+
+  </tr>
+   {% for i in buk %}
+  <tr>
+    <td>{{i.Subject_name}}</td>
+    <td>{{i.Course_name}}</td>
+    <td>{{i.Teacher_name}}</td>
+    <td>{{i.Teacher_email}}</td>
+    <td>{{i.Attendance}}</td>
+    <td>{{i.Pending_days}}</td>
+    <td>{{i.Enrollment_date}}</td>
+    <td>{{i.Teacher_response}}</td>
+      {% if i.Is_paid_subscription == 0 %}
+    <td>Free</td>
+      {% endif %}
+      {% if i.Is_paid_subscription == 1 %}
+    <td>Paid</td>
+      {% endif %}
+    <td>{{i.Paid_amount}}</td>
+    <td>
+      <button type="submit" onclick="location.href='{% url 'acc_chapter' i.id i.Course_name i.Subject_name %}'" name='t_h'>Access chapters</button>
+    </td>
+
+  </tr>
+  {% endfor %}
+
+</table><br><br>
+<div align="center">
+   <button type="submit" onclick="location.href='{% url 'student_home' %}'" name='mybtn2'>Back</button>
+</div>
+</body>
+</html>
+

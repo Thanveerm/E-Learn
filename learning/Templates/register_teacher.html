@@ -1,0 +1,58 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+.tdStyle
+{
+background-repeat:no-repeat;
+background-size:cover;
+}
+label
+{ float: center; width: 10em; margin-right: 1em; }
+.th{
+background-repeat:no-repeat;
+background-attachment:fixed;
+background-size:cover;
+}
+</style>
+
+    <meta charset="UTF-8">
+    <title> TEACHER SIDE</title>
+</head>
+
+<body class="th" background="{% static 'teacher_reg.jfif' %}">
+<form method="post" action="{% url 'teacher_rg' %}" enctype="multipart/form-data">
+       {% csrf_token %}
+<h1 style="color:red;" align="center">TEACHER REGISTRATION</h1>
+
+<div align="center">
+    <p>Please fill in this form to create an account.</p>
+            <div style="color:blue;" align="center">
+            {% if messages %}
+                {% for msg in messages %}
+                        {{ msg }}
+                {% endfor %}
+            {% endif %}
+            </div>
+
+                <input type="text" size="25" placeholder="Enter firstname" name="first_name" required><br><br>
+                <input type="text" size="25" placeholder="Enter lastname" name="last_name" required><br><br>
+                <input type="text" size="25" placeholder="Enter username" name="user_name" required><br><br>
+                <label for="photo"><b>Photo</b></label><br><br>
+                <input type="file" size="10" name="photo" required><br><br>
+                <input type="email" size="25" placeholder="Enter email" name="email" required><br><br>
+                <input type="password" size="25" placeholder="Enter password" name="psw" required><br><br>
+                <input type="text" size="25" placeholder="Enter qual" name="qual" required><br><br>
+                <textarea name="intro" rows="4" cols="50">Enter brief introduction</textarea><br><br>
+
+
+            <button type="submit" class="registerbtn">Register</button> &nbsp&nbsp&nbsp&nbsp
+            <button type="reset" class="registerbtn">Cancel</button><br><br><br>
+    </div>
+</form>
+<div align="center">
+   <button type="submit" onclick="location.href='{% url 'home' %}'" name='mybtn2'>Back</button> &nbsp
+</div>
+</body>
+</html>

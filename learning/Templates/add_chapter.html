@@ -1,0 +1,38 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ADD CHAPTER</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+</head>
+<body class= "pic" background="{% static 'trt.jpg' %}" >
+<div align="center">
+<form method="post" action="{% url 'add_chapter1' %}">
+    {% csrf_token %}
+    <h3>SELECT SUBJECT</h3>
+    <table>
+        <tr>
+            <td>
+                <select name="subj">
+                    <option value="Nil" selected>Select subject</option>
+                    {% for i in kk %}
+                        <option value="{{i}}">{{i}}</option>
+                    {% endfor %}
+                </select>
+            </td>
+        </tr>
+         <tr>
+            <td>
+            </td>
+        </tr>
+         <tr>
+            <td>
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="submit" name="Next" value="Submit">
+            </td>
+        </tr>
+    </table>
+</form>
+<button type="submit" onclick="location.href='{% url 'teacher_home' %}'">Home</button>
+</div>
+</body>
+</htm

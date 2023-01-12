@@ -1,0 +1,38 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Schedule test</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+
+</head>
+<script src="{% static 'jquery.min.js' %}"></script>
+<body class= "pic" background="{% static 'trt.jpg' %}" >
+    <div  class="cen" align="center">
+        <form method="post" action="{% url 'sched_test3' %}">
+            {% csrf_token %}
+            <br><br>
+            Question:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<textarea name="ques" cols="50" rows="4"></textarea><br><br>
+                Option 1:&nbsp&nbsp&nbsp&nbsp&nbsp
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<textarea name="op1" cols="50" rows="4"></textarea><br><br>
+                Option 2:&nbsp&nbsp&nbsp&nbsp&nbsp
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<textarea name="op2" cols="50" rows="4"></textarea><br><br>
+                Option 3:&nbsp&nbsp&nbsp&nbsp&nbsp
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<textarea name="op3" cols="50" rows="4"></textarea><br><br>
+            Correct answer:&nbsp&nbsp&nbsp&nbsp&nbsp
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<textarea name="ans" cols="50" rows="4"></textarea><br><br>
+                <button type="submit">Add next question/options</button><br><br>
+
+        </form>
+        <div>
+             <button type="submit" onclick="location.href='{% url 'teacher_home' %}'">Home</button>
+        </div>
+    </div>
+</body>
+</html>
+

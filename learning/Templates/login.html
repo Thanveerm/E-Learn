@@ -1,0 +1,38 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'login.css' %}">
+</head>
+<body class= "pic" background="{% static 'login.jpg' %}">
+<center>
+<form action="{% url 'login' %}" method="post">
+    {% csrf_token %}
+    <div class="imgcontainer">
+      <label><h1 style="color:white">LOGIN</h1></label>
+    </div><br>
+    <div style="color:blue;">
+            {% if messages %}
+                {% for msg in messages %}
+                        {{ msg }}
+                {% endfor %}
+            {% endif %}
+    </div>
+
+    <div class="container">
+    <label><b style="color:white">USERNAME</b></label>&nbsp&nbsp&nbsp&nbsp
+    <input type="text" placeholder="Enter username" name="user_name" required><br><br>
+
+    <label><b style="color:white">PASSWORD</b></label>&nbsp&nbsp&nbsp&nbsp
+    <input type="password" placeholder="Enter Password" name="pword" required><br><br>
+
+    <button type="submit">Login</button>&nbsp&nbsp&nbsp&nbsp
+    <button type="reset" >Cancel</button>
+    </div>
+</form>
+    <a href="{% url 'home' %}"><button>Back</button></a><br>
+</center>
+</body>
+</html>
+

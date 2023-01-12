@@ -1,0 +1,63 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Content edit</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+</head>
+<body class= "pic" background="{% static 'trt.jpg' %}">
+<div align="center">
+<form method="post" action="{% url 'edit_content1' id=gh1.id %}">
+    {% csrf_token %}
+    <h3><b>CHAPTER CONTENT EDIT</b></h3>
+    <label>Subject title</label><br><br>
+    <input type="text" value="{{gh1.Subject_title}}" name="sub"><br><br>
+    <label>Course name</label><br><br>
+    <input type="text" value="{{gh1.Course_title}}" name="cou"><br><br>
+    <label>Course chapter name</label><br><br>
+    <input type="text" value="{{gh1.Chapter_title}}" name="c_n"><br><br>
+    <label>Text content</label><br><br>
+    <textarea cols="70" rows="9" name="textt">{{gh1.Chapter_text_content}}</textarea><br><br>
+    <label>Required time to finish in seconds</label><br><br>
+    <input type="text" value="{{gh1.Chapter_Content_Time_required_in_sec}}" name="time"><br><br>
+
+    <label>Paid/Free</label><br>
+    {% if gh1.Chapter_Content_Is_open_for_free == 0 %}
+    <input type="radio"  id="w" name="s1" value="True">
+    <label for="w">Paid</label><br>
+    <input type="radio"  id="q" name="s1" value="False" checked>
+    <label for="q">Free</label><br><br>
+    {% endif %}
+    {% if gh1.Chapter_Content_Is_open_for_free == 1 %}
+    <input type="radio"  id="w" name="s1" value="True" checked>
+    <label for="w">Paid</label><br>
+    <input type="radio"  id="q" name="s1" value="False">
+    <label for="q">Free</label><br><br>
+    {% endif %}
+
+    <label>Supplimentary/Mandatory?</label><br>
+    {% if gh1.Chapter_Content_Is_mandatory == 1 %}
+    <input type="radio"  id="one1" name="s" value="False">
+    <label for="one1">Supplementary</label><br>
+    <input type="radio"  id="two1" name="s" value="True" checked>
+    <label for="two1">Mandatory</label><br><br>
+    {% endif %}
+
+     {% if gh1.Chapter_Content_Is_mandatory == 0 %}
+    <input type="radio"  id="one1" name="s" value="False" checked>
+    <label for="one1">Supplementary</label><br>
+    <input type="radio"  id="two1" name="s" value="True">
+    <label for="two1">Mandatory</label><br><br>
+    {% endif %}
+
+    <input type="submit" value="Submit">&nbsp&nbsp&nbsp&nbsp&nbsp
+    <input type="reset" value="Cancel">
+
+</form>
+</div>
+<div align="center">
+   <button type="submit" onclick="location.href='{% url 'ch_co_ad' %}'" name='mybtn2'>Back</button>
+</div>
+</body>
+</html>
+

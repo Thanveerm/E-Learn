@@ -1,0 +1,39 @@
+{% load static %}
+<html lang="en">
+<head>
+    <style>
+.tdStyle
+{
+background-repeat:no-repeat;
+background-size:cover;
+}
+label
+{ float: center; width: 10em; margin-right: 1em; }
+</style>
+    <meta charset="UTF-8">
+    <title>Guest contact</title>
+    <!--<link rel="stylesheet" type="text/css" href={% static 'trt.css' %}>-->
+</head>
+<!--style="background-repeat: no-repeat; background-size: 1300px 700px"-->
+<body class="tdStyle"  background="{% static 'conatct.jpg' %}">
+<form method="post" action="{% url 'contact' %}">
+    {% csrf_token %}
+    <div class="container" align="center">
+        <h1 style="color:white">Guest contact form</h1>
+            <p style="color:white">Please fill in this form to generate your query</p>
+                <label for="name"><b style="color:white">Name</b></label><br><br>
+                <input type="text" size="25" placeholder="Enter name" name="name" required><br><br>
+                <label for="email"><b style="color:white">Email</b></label><br><br>
+                <input type="email" size="25" placeholder="Enter email" name="email" required><br><br>
+                <label for="t_a"><b style="color:white">Message</b></label><br><br>
+        <textarea placeholder="Enter your query" name="t_a" cols="75" rows="8" required></textarea><br><br>
+            <button type="submit" class="registerbtn">Send</button>
+            <button type="reset" class="registerbtn">Cancel</button>
+    </div>
+</form>
+<div align="center">
+   <button type="submit" onclick="location.href='{% url 'home' %}'" name='mybtn2'>Back</button>
+</div>
+</body>
+</html>
+

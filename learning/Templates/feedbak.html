@@ -1,0 +1,98 @@
+{% load static %}
+
+<html lang="en">
+<head>
+   <style>
+      table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      }
+      th, td {
+      padding: 15px;
+      }
+   </style>
+    <meta charset="UTF-8">
+    <title>Feedbacks</title>
+   <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+</head>
+<body class= "pic" background="{% static 'trt.jpg' %}" >
+<h3 align="center">FEEDBACKS</h3>
+<div style="color:blue;" align="center">
+        {% if messages %}
+            {% for msg in messages %}
+                    {{ msg }}
+            {% endfor %}
+        {% endif %}
+</div>
+<table  style="width:100%">
+   <tr>
+      <th>
+         Student name
+      </th>
+      <th>
+         Student email
+      </th>
+      <th>
+         Teacher name
+      </th>
+      <th>
+         Teacher email
+      </th>
+      <th>
+         Subject name
+      </th>
+      <th>
+         Course name
+      </th>
+      <th>
+         Rating score
+      </th>
+      <th>
+         Feedback text
+      </th>
+      <th>
+         Submitted date
+      </th>
+   </tr>
+   {% for i in se %}
+   <tr>
+      <td>
+         {{i.Student_name}}
+      </td>
+      <td>
+         {{i.Student_email}}
+      </td>
+      <td>
+         {{i.Teacher_name}}
+      </td>
+      <td>
+         {{i.Teacher_email}}
+      </td>
+      <td>
+         {{i.Subject_name}}
+      </td>
+      <td>
+         {{i.Course_name}}
+      </td>
+      <td>
+         {{i.Rating_score}}/5
+      </td>
+      <td>
+         {{i.Feedback_text}}
+      </td>
+      <td>
+         {{i.Submission_date}}
+      </td>
+      <td>
+         <button type="submit" onclick="location.href='{% url 'delete_feedback' i.id %}'" name='del'>Delete</button>
+      </td>
+   </tr>
+   {% endfor %}
+</table><br><br>
+<div align="center">
+   <button type="submit" onclick="location.href='{% url 'admin_home' %}'" name='mybtn2'>Back</button>
+</div>
+
+</body>
+</html>
+

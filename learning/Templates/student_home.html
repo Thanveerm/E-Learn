@@ -1,0 +1,58 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> student home</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'home.css' %}">
+</head>
+<style>
+.pic
+{
+background-repeat:no-repeat;
+background-size:cover;
+}
+</style>
+<body class="pic" background="{% static 'student home.jfif' %}">
+<form method="post" action="{% url 'student_home' %}" enctype="multipart/form-data">
+       {% csrf_token %}
+
+<div class="navbar">
+  <a href="{% url 'update_pr_st' %}">Update profile</a>
+  <a href="{% url 'st_book_courses' %}">Booked courses</a>
+  <a href="{% url 'st_sub_selnew1.html' %}">Book course</a>
+  <a href="{% url 'do_cer' %}">Download Certificate</a>
+  <a href="{% url 'feedback' %}">Feedback </a>
+
+
+  <div class="dropdown">
+    <button class="dropbtn">Exam
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="{% url 'ex_not'%}">Exam notification</a>
+      <a href="{% url 'start_test'%}">Start test</a>
+      <a href="{% url 'exam_result1'%}">Exam Result</a>
+
+
+    </div>
+
+  </div>
+    <a href="{% url 'message2' %}">Messages</a>
+     <a href="{% url 'ch_p' %}">Change password</a>
+
+    <a href="{% url 'logout' %}">Logout</a>
+</div>
+<div align="center">
+    <h1 style="color:white"> STUDENT HOME</h1>
+</div>
+
+<div style="color:blue;" align="center">
+      {% if messages %}
+          {% for msg in messages %}
+                  {{ msg }}
+          {% endfor %}
+      {% endif %}
+</div>
+</body>
+
+</html>

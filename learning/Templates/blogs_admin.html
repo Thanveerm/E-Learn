@@ -1,0 +1,86 @@
+{% load static %}
+
+<html lang="en">
+<head>
+   <style>
+      table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      }
+      th, td {
+      padding: 15px;
+      }
+      .pic{
+background-repeat:no-repeat;
+background-attachment:fixed;
+background-size:cover;
+}
+
+   </style>
+    <meta charset="UTF-8">
+    <title>Blogs</title>
+   <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+</head>
+<body class= "pic" background="{% static 'blog admin.jfif' %}" >
+<h3 align="center">Approve/Reject blog requests</h3>
+<div style="color:blue;" align="center">
+        {% if messages %}
+            {% for msg in messages %}
+                    {{ msg }}
+            {% endfor %}
+        {% endif %}
+</div>
+<table  style="width:100%">
+   <tr>
+      <th>
+         Name
+      </th>
+      <th>
+         Blog_content
+      </th>
+      <th>
+         Photo
+      </th>
+      <th>
+         Date added
+      </th>
+      <th>
+         Approval_status
+      </th>
+   </tr>
+   {% for i in dm %}
+   <tr>
+      <td>
+         {{i.Name}}
+      </td>
+      <td>
+         {{i.Blog_content}}
+      </td>
+      <td>
+         {{i.Image}}
+      </td>
+      <td>
+         {{i.Date_blog}}
+      </td>
+      <td>
+         {{i.Approval_status}}
+      </td>
+      <td>
+         <button type="submit" onclick="location.href='{% url 'blog_approves' i.id %}'" name='t_h'>Approve</button>
+      </td>
+      <td>
+         <button type="submit" onclick="location.href='{% url 'blog_rejects' i.id %}'" name='del'>Reject</button>
+      </td>
+        <td>
+         <button type="submit" onclick="location.href='{% url 'blog_delete' i.id %}'" name='del'>Delete</button>
+      </td>
+   </tr>
+   {% endfor %}
+</table><br><br>
+<div align="center">
+   <button type="submit" onclick="location.href='{% url 'admin_home' %}'" name='mybtn2'>Back</button>
+</div>
+
+</body>
+</html>
+

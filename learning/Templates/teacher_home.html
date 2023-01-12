@@ -1,0 +1,77 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Teacher home </title>
+    <link rel="stylesheet" type="text/css" href="{% static 'admin.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'table.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'msg.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'studenthome.css' %}">
+     <style>
+        .notification {
+  background-color: #333;
+  color: white;
+  text-decoration: none;
+  padding: 15px 26px;
+  position: relative;
+  display: inline-block;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-size: 16px;
+}
+
+.notification:hover {
+  background: green;
+}
+
+.notification .badge {
+  position: absolute;
+  top: -00px;
+  right: -00px;
+  padding: 3px 8px;
+  border-radius: 50%;
+  background: red;
+  color: white;
+}
+    </style>
+
+</head>
+<body class="pic" background="{% static 'techer home.jfif' %}">
+<div class="navbar">
+  <a href="{% url 'update_pr_tr' %}">Update profile</a>
+    <a href="{% url 'student_progress' %}">Student progress</a>
+    <a href="{% url 'ch_p11' %}">Change password</a>
+  <div class="dropdown">
+    <button class="dropbtn">Topics<i class="fa fa-caret-down"></i></button>
+    <div class="dropdown-content">
+        <a href="{% url 'subject_tr' %}">Subject</a>
+        <a href="{% url 'chapter_tr' %}">Chapter</a>
+        <a href="{% url 'ch_co_tr' %}">Chapter content</a>
+    </div>
+  </div>
+    <button  class="notification" onclick="location.href='{% url 'stu_buk_acc' %}'"><span>Student booked details<i class="fa fa-caret-down"></i></span>
+        <a href="{% url 'notiffy' %}" class="badge">{% if count > 0 %}{{count}}{% else %}0{% endif %}</a></button>
+  <div class="dropdown">
+    <button class="dropbtn">Exam<i class="fa fa-caret-down"></i></button>
+    <div class="dropdown-content">
+        <a href="{% url 'sched_test' %}">Schedule a test</a>
+        <a href="{% url 'delete_test'%}">Delete scheduled test</a>
+        <a href="{% url 'exam_result'%}">Exam results</a>
+    </div>
+  </div>
+  <a href="{% url 'message3' %}">Messages</a>
+  <a href="{% url 'atten'%}">Give attendance</a>
+  <a href="{% url 'logout' %}" onclick="return confirm('Are you sure?')">Logout</a>
+</div>
+ <h1>TEACHER HOME</h1>
+<div align="center" style="color:blue;">
+        {% if messages %}
+            {% for msg in messages %}
+                    {{ msg }}
+            {% endfor %}
+        {% endif %}
+</div>
+</body>
+</html
+

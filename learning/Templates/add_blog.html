@@ -1,0 +1,47 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>label
+{ float: center; width: 10em; margin-right: 1em; }
+.pic{
+background-repeat:no-repeat;
+background-attachment:fixed;
+background-size:cover;
+}
+</style>
+    <title>Add blog</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+</head>
+<body class= "pic" background="{% static 'blogs.jpg' %}">
+<div align="center">
+<form method="post" style="color:white" action="{% url 'add_blog' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    <h3><b>ADD BLOG</b></h3>
+                <label>Your name</label><br><br>
+                <input type="text" name="nam" required><br><br>
+                <label>Blog content</label><br><br>
+                <textarea rows="4" cols="50" name="c_b" required></textarea><br><br>
+                <label>Upload your photo</label><br><br>
+                <input type="file" size="10" style="color:white" name="photo" required><br><br>
+                <label>Today's date</label><br><br>
+                <input type="date" name="date1" required><br><br>
+                <input type="submit" value="submit">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <input type="reset" value="cancel">
+</form>
+<div align="center">
+    <button type="submit" onclick="location.href='{% url 'home' %}'" name='mybtn2'>back</button>
+</div>
+</div>
+
+<div align="center" style="color:blue;">
+        {% if messages %}
+            {% for msg in messages %}
+                    {{ msg }}
+            {% endfor %}
+        {% endif %}
+</div>
+
+</body>
+</html>
+

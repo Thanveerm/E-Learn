@@ -1,0 +1,54 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ADD CHAPTER CONTENT</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+</head>
+<body class= "pic" background="{% static 'trt.jpg' %}">
+<div align="center">
+<form method="post" action="{% url 'add_ch_con' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    <h3>ADD CHAPTER CONTENT</h3>
+                <select name="ch_tit1">
+                    <option value="Nil" selected>Select chapter</option>
+                    {% for i in kk %}
+                        <option value="{{i}}">{{i}}</option>
+                    {% endfor %}
+                </select><br><br>
+                <label>Upload content</label><br><br>
+                <input type="file" size="17" placeholder="Attach course content" name="up_c" required><br><br><br>
+                <label>Enter text content</label><br><br>
+                <textarea cols="100" rows="23" name="tex_con"></textarea> <br><br><br>
+                <label>Required time to finish in seconds</label><br><br>
+                <input type="text" name="time"><br><br><br>
+    <label>Paid/Free?</label><br><br>
+    <input type="radio"  id="w" name="s1" value="True">
+    <label for="w">Paid</label><br><br>
+    <input type="radio"  id="q" name="s1" value="False">
+    <label for="q">Free</label><br><br><br>
+
+    <label>Supplimentary/Mandatory?</label><br><br>
+    <input type="radio"  id="one1" name="s" value="False">
+    <label for="one1">Supplementary</label><br><br>
+    <input type="radio"  id="two1" name="s" value="True">
+    <label for="two1">Mandatory</label><br><br><br>
+
+     <label>Is uploaded content image/text/video?</label><br><br>
+    <input type="radio"  id="one" name="cont_typ" value="1">
+    <label for="one">Image</label><br><br>
+    <input type="radio"  id="two" name="cont_typ" value="2">
+    <label for="two">Text</label><br><br>
+    <input type="radio"  id="three" name="cont_typ" value="3">
+    <label for="three">Video</label><br><br><br>
+        <input type="submit" class="registerbtn" name="submit" value="Submit">&nbsp&nbsp&nbsp&nbsp
+        <input type="reset" class="registerbtn" name="cancel" value="Cancel">
+</form>
+</div>
+<div align="center">
+   <button type="submit" class="registerbtn" onclick="location.href='{% url 'ch_co_tr' %}'" name='mybtn2'>Back</button>
+</div>
+</body>
+</html>
+
+

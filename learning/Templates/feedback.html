@@ -1,0 +1,73 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Feedback</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+
+</head>
+
+<body class= "pic" background="{% static 'trt.jpg' %}">
+<center>
+<form method="post" action="{% url 'feedback' %}">
+    {% csrf_token %}
+    <div class="container">
+    <h1>Feedback</h1>
+    <p>Send your valuable feedback here</p>
+    <div style="color:blue;" align="center">
+        {% if messages %}
+            {% for msg in messages %}
+                    {{ msg }}
+            {% endfor %}
+        {% endif %}
+    </div>
+    <hr>
+     <label><b>Select course</b></label><br><br>
+     <select name="select" value="nil">
+         <option value="nil" selected>select</option>
+         {% for i in fd %}
+         <option value={{i}}>{{i}}</option>
+         {% endfor %}
+     </select><br><br>
+
+         <label><b>Select subject</b></label><br><br>
+     <select name="select3" value="nil">
+         <option value="nil" selected>select</option>
+         {% for i in fd1 %}
+         <option value={{i}}>{{i}}</option>
+         {% endfor %}
+     </select><br><br>
+
+     <label><b>Select teacher</b></label><br><br>
+     <select name="select4" value="nil">
+                 <option value="nil" selected>select</option>
+               {% for i,j in fd4 %}
+                     <option value="{{i}};{{j}}">Name - {{i}}; Email - {{j}}</option>
+               {% endfor %}
+          </select><br><br>
+
+         <label><b>Select a score</b></label><br><br>
+        <select name="select1" value="0">
+                 <option value="nil" selected>select a score (1 - worst, 5 - best)</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+          </select><br><br>
+
+        <label><b>Please write few words about the course</b></label><br><br>
+        <textarea name="text_feed" rows="4" cols="50"></textarea> <br>
+    <hr>
+    <button type="submit" class="registerbtn">Submit</button>&nbsp&nbsp&nbsp&nbsp
+    <button type="reset" class="registerbtn">Cancel</button>
+  </div>
+
+</form>
+    <button type="submit" class="registerbtn" onclick="location.href='{% url 'student_home' %}'" name='mybtn2'>Back</button>
+
+</center>
+</body>
+
+</html>
+

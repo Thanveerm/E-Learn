@@ -1,0 +1,91 @@
+{% load static %}
+
+<html lang="en">
+<head>
+   <style>
+      table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      }
+      th, td {
+      padding: 15px;
+      }
+   </style>
+    <meta charset="UTF-8">
+    <title>Subject update</title>
+   <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+</head>
+<body class= "pic" background="{% static 'subject.jfif' %}" >
+<h3 align="center" style="color:white">MY SUBJECTS</h3>
+<div style="color:blue;" align="center">
+        {% if messages %}
+            {% for msg in messages %}
+                    {{ msg }}
+            {% endfor %}
+        {% endif %}
+</div>
+<table  style="width:100%;font-size:150%;color:yellow">
+   <tr>
+      <th>
+         Subject name
+      </th>
+      <th>
+         Course name
+      </th>
+      <th>
+         Course briefing
+      </th>
+      <th>
+         Course duration in seconds
+      </th>
+      <th>
+         Chapter numbers
+      </th>
+      <th>
+         Course fee
+      </th>
+      <th>
+         Language of teaching
+      </th>
+   </tr>
+   {% for a,b,c,d,e,f,g,h in hh %}
+   <tr>
+      <td>
+         {{b}}
+      </td>
+      <td>
+         {{a}}
+      </td>
+      <td>
+         {{c}}
+      </td>
+      <td>
+         {{d}}
+      </td>
+      <td>
+         {{e}}
+      </td>
+      <td>
+         {{f}}
+      </td>
+      <td>
+         {{g}}
+      </td>
+      <td>
+         <button type="submit" onclick="location.href='{% url 'edit_subject' b a h %}'" name='t_h'>Edit</button>
+      </td>
+      <td>
+         <button type="submit" onclick="location.href='{% url 'delete_subject' b a h %}'" name='del'>Delete</button>
+      </td>
+   </tr>
+   {% endfor %}
+</table><br><br>
+<div align="center">
+   <button type="submit" class="registerbtn" onclick="location.href='{% url 'add_subject' %}'" name='mybtn2'>Add</button>&nbsp&nbsp&nbsp&nbsp&nbsp
+   <button type="submit" class="registerbtn" onclick="location.href='{% url 'teacher_home' %}'" name='mybtn2'>Back</button>
+</div>
+
+</body>
+</html>
+
+

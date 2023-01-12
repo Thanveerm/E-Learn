@@ -1,0 +1,100 @@
+{% load static %}
+
+<html lang="en">
+<head>
+   <style>
+      table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      }
+      th, td {
+      padding: 15px;
+      }
+   </style>
+    <meta charset="UTF-8">
+    <title>Student progress</title>
+   <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+</head>
+<body class= "pic" background="{% static 'trt.jpg' %}" >
+<h3 align="center">PROGRESS REPORT OF STUDENTS</h3>
+<div style="color:blue;" align="center">
+        {% if messages %}
+            {% for msg in messages %}
+                    {{ msg }}
+            {% endfor %}
+        {% endif %}
+</div>
+<table  style="width:100%">
+   <tr>
+      <th>
+         Student name
+      </th>
+      <th>
+         Student email
+      </th>
+      <th>
+         Subject name
+      </th>
+      <th>
+         Course name
+      </th>
+      <th>
+         Course chapter content image title
+      </th>
+      <th>
+         Chapter title
+      </th>
+      <th>
+         Begin_timestamp
+      </th>
+      <th>
+         Completion_timestamp
+      </th>
+        <th>
+         Status
+      </th>
+   </tr>
+   {% for i in hgh %}
+   {% for k in dd %}
+   {% if k.Student_email == i %}
+   <tr>
+      <td>
+         {{k.Student_name}}
+      </td>
+      <td>
+         {{k.Student_email}}
+      </td>
+      <td>
+         {{k.Subject_name}}
+      </td>
+      <td>
+         {{k.Course_name}}
+      </td>
+      <td>
+         {{k.Course_chapter_content_name}}
+      </td>
+      <td>
+         {{k.Course_chapter_name}}
+      </td>
+      <td>
+         {{k.Begin_timestamp}}
+      </td>
+      <td>
+         {{k.Completion_timestamp}}
+      </td>
+      <td>
+         {{k.Status}}
+      </td>
+   </tr>
+   {% endif %}
+   {% endfor %}
+   {% endfor %}
+</table><br><br>
+<div align="center">
+   <button type="submit" onclick="location.href='{% url 'teacher_home' %}'" name='mybtn2'>Back</button>
+</div>
+
+</body>
+</html>
+
+

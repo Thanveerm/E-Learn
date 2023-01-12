@@ -1,0 +1,41 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ADD CHAPTER</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'home.css' %}">
+</head>
+<body class="pic" background="{% static 'trt.jpg' %}">
+<div align="center">
+<form method="post" action="{% url 'add_chapter' %}">
+    {% csrf_token %}
+    <h3>ADD CHAPTER</h3>
+    <select name="cou_tit1">
+        <option value="Nil" selected>Select course</option>
+        {% for i in mm %}
+            <option value="{{i}}">{{i}}</option>
+        {% endfor %}
+    </select><br><br>
+    <label>Enter chapter title</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    &nbsp&nbsp&nbsp&nbsp
+
+    <input type="text" name="ch_tit1"><br><br>
+
+    <label>Number of assignment sections</label>
+
+    <input type="number" name="assi"><br><br>
+
+    <div align="center">
+        <input type="submit" name="submit" value="Submit">&nbsp&nbsp&nbsp&nbsp
+        <input type="reset" name="cancel" value="Cancel">&nbsp&nbsp&nbsp&nbsp
+    </div>
+    <input type="hidden" value="0" name="vdd">
+    <input type="hidden" value="0" name="im">
+    <input type="hidden" value="0" name="parg">
+</form>
+     <button type="submit" onclick="location.href='{% url 'teacher_home' %}'">Home</button>
+</div>
+</body>
+</html>
+
+

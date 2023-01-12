@@ -1,0 +1,96 @@
+{% load static %}
+
+<html lang="en">
+<head>
+   <style>
+      table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      }
+      th, td {
+      padding: 15px;
+      }
+   </style>
+    <meta charset="UTF-8">
+    <title>Schedule test</title>
+   <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+</head>
+<body class= "pic" background="{% static 'trt.jpg' %}" >
+<h3 align="center">SCHEDULE TEST</h3>
+<div style="color:blue;" align="center">
+        {% if messages %}
+            {% for msg in messages %}
+                    {{ msg }}
+            {% endfor %}
+        {% endif %}
+</div>
+<form method="post" action="{% url 'sched_test1' %}">
+   {% csrf_token %}
+<table  style="width:100%">
+   <tr>
+      <th>
+         Student name
+      </th>
+      <th>
+         Student email
+      </th>
+      <th>
+         Subject name
+      </th>
+      <th>
+         Course name
+      </th>
+      <th>
+         Attendance
+      </th>
+      <th>
+         Pending_days
+      </th>
+      <th>
+         Enrollment_date
+      </th>
+   </tr>
+   {% for i in stz %}
+   <tr>
+      <td>
+         {{i.Student_name}}
+      </td>
+      <td>
+         {{i.Student_email}}
+      </td>
+      <td>
+         {{i.Subject_name}}
+      </td>
+      <td>
+         {{i.Course_name}}
+      </td>
+      <td>
+         {{i.Attendance}}
+      </td>
+      <td>
+         {{i.Pending_days}}
+      </td>
+      <td>
+         {{i.Enrollment_date}}
+      </td>
+      <td>
+         <input type="checkbox" name="scd" value="{{i.id}}">
+      </td>
+   </tr>
+   {% endfor %}
+</table><br><br>
+<div align="center">
+   NUMBER OF QUESTIONS: <input type="number" name='numbb' required><br><br>
+   EXAM DATE AND START TIME: <input type="datetime-local" name='dtt' required><br><br>
+   EXAM DATE AND STOP TIME: <input type="datetime-local" name='stt' required><br><br>
+   <input type="submit" name='schd' value="Submit">
+   <input type="reset" name='cancel' value="Reset">
+</div>
+</form>
+<div align="center">
+   <button type="submit" onclick="location.href='{% url 'teacher_home' %}'" name='mybtn2'>Back</button>
+</div>
+
+</body>
+</html>
+

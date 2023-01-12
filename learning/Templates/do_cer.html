@@ -1,0 +1,42 @@
+{% load static %}
+<html lang="en">
+<head>
+    <style>
+.tdStyle
+{
+background-repeat:no-repeat;
+background-size:cover;
+}
+label
+{ float: center; width: 10em; margin-right: 1em; }
+</style>
+    <meta charset="UTF-8">
+    <title>Download certificate</title>
+    <!--<link rel="stylesheet" type="text/css" href={% static 'trt.css' %}>-->
+</head>
+<!--style="background-repeat: no-repeat; background-size: 1300px 700px"-->
+<body class="tdStyle"  background="{% static 'trt.jpg' %}">
+<div class="container" align="center">
+    <h1>Download certificates</h1>
+    {% for i in sr %}
+    {% if i.Certificate != '' %}
+    <a href="/media/{{i.Certificate}}" download="">
+         <input type="button" id="btn" value="Download certificate"/>
+    </a><br><br>
+    {% endif %}
+    {% endfor %}
+
+</div><br><br>
+<div align="center">
+    <button type="submit" onclick="location.href='{% url 'student_home' %}'">Home</button>
+</div>
+<div align="center" style="color:blue;">
+        {% if messages %}
+            {% for msg in messages %}
+                    {{ msg }}
+            {% endfor %}
+        {% endif %}
+</div>
+</body>
+</html>
+

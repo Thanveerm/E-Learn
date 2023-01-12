@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>approve or reject</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th> Name</th>
+        <th> Photo</th>
+        <th> Date add</th>
+        <th> Approval Status</th>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+           <button type="submit" onclick="location.href='{% url 'blog_approves' i.id %}'" name='t_h'>Approve</button>
+        </td>
+        <td>
+           <button type="submit" onclick="location.href='{% url 'blog_rejects' i.id %}'" name='del'>Reject</button>
+        </td>
+              <td>
+           <button type="submit" onclick="location.href='{% url 'blog_delete' i.id %}'" name='del'>Delete</button>
+        </td>
+    </tr>
+
+</table>
+
+</body>
+</html>
